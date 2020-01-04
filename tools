@@ -121,7 +121,7 @@ Perm()
 # Process the input options. Add options as needed.                           #
 ###############################################################################
 # Get the options                                                             #
-while getopts ":a|d|h|u|U" option; do
+while getopts ":a|d|h|p|u|U" option; do
 	case $option in
 		a) # run autoremove
 			Auto
