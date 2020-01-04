@@ -1,0 +1,136 @@
+#!/bin/bash
+################################################################################
+#                              Tools Script                                    #
+#                                                                              #
+# This is a basic tools script, which will allow the ability for a user to run #
+# the apt update, upgrade, dist upgrade, and autoremove features.              #
+#                                                                              #
+# Change History                                                               #
+# 12/19/2019  Thomas Shuster: Original code. This is a script, intended for    #
+#                           to be used to update the system.                   #
+#                           Add new history entries as needed.                 #
+#                                                                              #
+#                                                                              #
+################################################################################
+################################################################################
+################################################################################
+#                                                                              #
+#  Copyright (C) 2019 Thomas Shuster                                           #
+#  thomas.shuster@gmail.com                                                    #
+#                                                                              #
+#  This program is free software; you can redistribute it and/or modify        #
+#  it under the terms of the GNU General Public License as published by        #
+#  the Free Software Foundation; either version 2 of the License, or           #
+#  (at your option) any later version.                                         #
+#                                                                              #
+#  This program is distributed in the hope that it will be useful,             #
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of              #
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the               #
+#  GNU General Public License for more details.                                #
+#                                                                              #
+#  You should have received a copy of the GNU General Public License           #
+#  along with this program; if not, write to the Free Software                 #
+#  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA   #
+#                                                                              #
+################################################################################
+################################################################################
+# colors                                                                       #
+################################################################################
+TEXT_RESET='\e[0m'
+TEXT_YELLOW='\e[0;33m'
+TEXT_RED_B='\e[1;31m'
+################################################################################
+# Help                                                                         #
+################################################################################
+Help()
+{
+	#display help
+	echo "Add description of the script functions here."
+	echo
+	echo "Syntax: scriptTemplate [-a|d|h|u|U]"
+	echo "options"
+	echo "a   Run autoremove."
+	echo "d   Run Dist-upgrade."
+	echo "h   Print this Help."
+	echo "u   Run apt update."
+	echo "U   Run apt upgrade."
+	echo
+}
+
+###############################################################################
+# Update                                                                      #
+###############################################################################
+Update()
+{
+	# Run update
+	sudo apt -y update
+	echo -e $TEXT_YELLOW
+	echo 'APT update finished...'
+	echo -e $TEXT_RESET
+}
+
+###############################################################################
+# Upgrade                                                                     #
+###############################################################################
+Upgrade()
+{
+	udo apt -y upgrade
+	echo -e $TEXT_YELLOW
+	echo 'APT upgrade finished...'
+	echo -e $TEXT_RESET
+}
+
+###############################################################################
+# dist-upgrade                                                                #
+###############################################################################
+Dist()
+{
+	sudo apt -y dist-upgrade
+	echo -e $TEXT_YELLOW
+	echo 'APT distributive upgrade finished...'
+	echo -e $TEXT_RESET
+}
+
+###############################################################################
+# autoremove                                                                  #
+###############################################################################
+Auto()
+{
+	sudo apt -y autoremove
+	echo -e $TEXT_YELLOW
+	echo 'APT auto remove finished...'
+	echo -e $TEXT_RESET
+}
+###############################################################################
+###############################################################################
+# Main program                                                                #
+###############################################################################
+###############################################################################
+###############################################################################
+# Process the input options. Add options as needed.                           #
+###############################################################################
+# Get the options                                                             #
+while getopts ":a|d|h|u|U" option; do
+	case $option in
+		a) # run autoremove
+			Auto
+			exit;;
+		d) # run dist-upgrade
+			Dist
+			exit;;
+		h) # display Help
+			Help
+			exit;;
+		u) # run apt update
+			Update
+			exit;;
+		U) # run apt upgrade
+			Upgrade
+			exit;;
+
+		\?) # incorrect option
+			echo "Error: Invalid option"
+			exit;;
+		esac
+	done
+echo "Please see the Help section to find out what options are available."
