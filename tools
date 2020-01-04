@@ -45,13 +45,14 @@ TEXT_RED_B='\e[1;31m'
 Help()
 {
 	#display help
-	echo "Add description of the script functions here."
+	echo "A tools script, for managing various tasks in the system."
 	echo
-	echo "Syntax: scriptTemplate [-a|d|h|u|U]"
+	echo "Syntax: scriptTemplate [-a|d|h|p|u|U]"
 	echo "options"
 	echo "a   Run autoremove."
 	echo "d   Run Dist-upgrade."
 	echo "h   Print this Help."
+	echo "p   Set permissions of the ~/scripts folder/files."
 	echo "u   Run apt update."
 	echo "U   Run apt upgrade."
 	echo
@@ -101,6 +102,16 @@ Auto()
 	echo 'APT auto remove finished...'
 	echo -e $TEXT_RESET
 }
+
+###############################################################################
+# Permissions                                                                 #
+###############################################################################
+Perm()
+{
+	sudo chmod 750 -R /home/thomas/scripts
+
+	sudo chown -R thomas:scripts /home/thomas/scripts
+}
 ###############################################################################
 ###############################################################################
 # Main program                                                                #
@@ -120,6 +131,9 @@ while getopts ":a|d|h|u|U" option; do
 			exit;;
 		h) # display Help
 			Help
+			exit;;
+		p) # set permissions of the script folder/files
+			Perm
 			exit;;
 		u) # run apt update
 			Update
