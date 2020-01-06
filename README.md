@@ -1,5 +1,5 @@
 # tools-script
 
-This is a simple bash script, intended to be used to manage various tasks in your system, such as: update, upgrade, dist-upgrade, and autoremove.
+This is a simple bash script, intended to be used to manage various tasks in your system, such as: update, upgrade, dist-upgrade, autoremove, set permissions on the scripts folder, and run a "matrix" screen.
 
-Future impliments will be setting permissions for the scripts folder, running a matrix style window, and others, to be determined.
+Future impliments to be determined.
